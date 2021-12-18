@@ -1,44 +1,46 @@
 version: '3'
-services: 
-  nginx: 
-    image: nginx:1.18
+services:
+  nginx:
+    image: nginx:1.20.2
     container_name: nginx
-    ports: 
+    ports:
       - 80:80
       - 443:443
-    volumes: 
-      - ~/web/www:/usr/share/nginx/html
-      - ~/web/server/nginx/conf.d:/etc/nginx/conf.d
-      - ~/web/server/nginx/logs:/var/log/nginx
-    depends_on: 
-      - php80
+    volumes:
+      - ~/code/www:/usr/share/nginx/html
+      - ~/code/webserver/nginx/conf.d:/etc/nginx/conf.d
+      - ~/code/webserver/nginx/logs:/var/log/nginx
+    depends_on:
+      - php8
 
-  php80:
-    build: ./php/php80
-    container_name: php80
-    volumes: 
-      - ~/web/www:/var/www/html
-      - ~/web/server/php/php80/conf:/usr/local/etc/php
-    links: 
+  php8:
+    build: ./php/php8
+    container_name: php8
+    volumes:
+      - ~/code/www:/var/www/html
+      - ~/code/webserver/php/php8/conf:/usr/local/etc/php
+    links:
       - mysql
       - mailhog
-    expose: 
+    expose:
       - 9000
 
   mysql:
     image: mysql:8.0
     container_name: mysql
-    ports: 
+    ports:
       - 3306:3306
     volumes:
-      - ~/web/server/mysql/conf:/etc/mysql
-      - ~/web/server/mysql/data:/var/lib/mysql
+      - ~/code/webserver/mysql/conf:/etc/mysql
+      - ~/code/webserver/mysql/data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
     command:
-      --character-set-server=utf8mb4
-      --collation-server=utf8mb4_general_ci
-      --default-authentication-plugin=mysql_native_password
+      [
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_general_ci',
+        '--default-authentication-plugin=mysql_native_password'
+      ]
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -59,6 +61,6 @@ services:
   mailhog:
     image: mailhog/mailhog
     container_name: mailhog
-    ports: 
+    ports:
       - 1025:1025
       - 8025:8025
