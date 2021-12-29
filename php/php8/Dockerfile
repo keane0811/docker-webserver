@@ -24,11 +24,11 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
     && docker-php-ext-install sockets
 
 ## npm & yarn
-# RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash - \
-#     && apt-get install -y nodejs \
-#     && npm config set registry=https://registry.npm.taobao.org \
-#     && npm install -g yarn \
-#     && yarn config set registry https://registry.npm.taobao.org
+RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y nodejs \
+    && npm config set registry=https://registry.npm.taobao.org \
+    && npm install -g yarn \
+    && yarn config set registry https://registry.npm.taobao.org
 
 ## Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
