@@ -66,7 +66,7 @@ services:
       - 8025:8025
 
   python:
-    image: ./python
+    build: ./python
     container_name: python3
     volumes:
       - ~/code/www:/myapp
