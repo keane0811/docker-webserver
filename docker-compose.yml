@@ -64,12 +64,3 @@ services:
     ports:
       - 1025:1025
       - 8025:8025
-
-  python:
-    build: ./python
-    container_name: python3
-    volumes:
-      - ~/code/www:/myapp
-    working_dir: /myapp
-    ports:
-      - 5000:5000
