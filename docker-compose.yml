@@ -1,7 +1,7 @@
 version: '3'
 services:
   nginx:
-    image: nginx:1.20.2
+    image: nginx:1.22.0
     container_name: nginx
     ports:
       - 80:80
@@ -11,14 +11,14 @@ services:
       - ~/code/webserver/nginx/conf.d:/etc/nginx/conf.d
       - ~/code/webserver/nginx/logs:/var/log/nginx
     depends_on:
-      - php8
+      - php8.1
 
-  php8:
-    build: ./php/php8
-    container_name: php8
+  php8.1:
+    build: ./php/php8.1
+    container_name: php8.1
     volumes:
       - ~/code/www:/var/www/html
-      - ~/code/webserver/php/php8/conf:/usr/local/etc/php
+      - ~/code/webserver/php/php8.1/conf:/usr/local/etc/php
     links:
       - mysql
       - mailhog
