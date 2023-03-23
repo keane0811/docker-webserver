@@ -1,10 +1,18 @@
 FROM python:3.10
 
-RUN pip install flask -i https://pypi.tuna.tsinghua.edu.cn/simple \
-    && pip install mysql-connector-python -i https://pypi.tuna.tsinghua.edu.cn/simple \
-    && pip install sqlalchemy -i https://pypi.tuna.tsinghua.edu.cn/simple \
-    && pip install requests -i https://pypi.tuna.tsinghua.edu.cn/simple \
-    && pip install pandas -i https://pypi.tuna.tsinghua.edu.cn/simple \
-    && pip install openpyxl -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip && \
+    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
+    pip install -i https://mirrors.ustc.edu.cn/pypi/web/simple \
+    flask \
+    mysql-connector-python \
+    sqlalchemy \
+    requests \
+    pandas \
+    openpyxl \
+    docxtpl \
+    openai \
+    beautifulsoup4 \
+    lxml 
 
-# docker run -it --name py3 -v ~/code/www:/myapp -w /myapp -p 5000:5000
+# docker build -t keane/python:3.10 .
+# docker run -it --name py3 -v ~/code/python/project:/myapp -w /myapp -p 5000:5000 keane/python:3.10

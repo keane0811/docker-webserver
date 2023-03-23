@@ -15,6 +15,7 @@ services:
 
   php8.1:
     build: ./php/php8.1
+    image: keane/php:8.1
     container_name: php8.1
     volumes:
       - ~/code/www:/var/www/html
@@ -64,3 +65,15 @@ services:
     ports:
       - 1025:1025
       - 8025:8025
+
+  python:
+    build: ./python
+    image: keane/python:3.10
+    container_name: py3
+    ports:
+      - 5000:5000
+    volumes:
+      - ~/code/www/python:/myapp
+    working_dir: /myapp/
+    stdin_open: true
+    tty: true
