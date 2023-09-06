@@ -1,8 +1,10 @@
 FROM python:3.10
 
-RUN python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip && \
-    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
-    pip install -i https://mirrors.ustc.edu.cn/pypi/web/simple \
+# RUN python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip && \
+# pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
+RUN pip install -i https://mirrors.ustc.edu.cn/pypi/web/simple pip -U && \
+    pip config set global.index-url https://mirrors.ustc.edu.cn/pypi/web/simple && \
+    pip install \
     flask \
     mysql-connector-python \
     sqlalchemy \

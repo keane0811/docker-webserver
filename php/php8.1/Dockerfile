@@ -12,7 +12,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
 
 ## Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+    && composer config -g repo.packagist composer https://mirrors.tencent.com/composer/
 
 ## 依赖
 RUN apt-get install -y \
